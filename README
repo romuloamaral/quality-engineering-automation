@@ -1,0 +1,15 @@
+Abordagem:
+
+- Testes de API executados em fluxo contínuo.
+
+- Dados de teste reutilizáveis.
+
+- Page Object Model (POM) para a interface do usuário.
+
+- Asserções explícitas.
+
+- Separação entre dados de teste, páginas e cenários de teste.
+
+- Estrutura de projeto clara.
+
+- Instruções de execução reproduzíveis.
