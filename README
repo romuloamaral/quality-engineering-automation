@@ -1,5 +1,7 @@
 Abordagem:
 
+- Testes WEB.
+
 - Testes de API executados em fluxo contínuo.
 
 - Dados de teste reutilizáveis.
@@ -12,4 +14,4 @@ Abordagem:
 
 - Estrutura de projeto clara.
 
-- Instruções de execução reproduzíveis.
+- Instruções de execução reproduzíveis, de cada plataforma (API e WEB), podem ser acessadas nos arquivos Readme de seus respectivos diretórios.

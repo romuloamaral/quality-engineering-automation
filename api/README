@@ -1,0 +1,102 @@
+API Test Automation
+Automação de testes da API Bookstore utilizando Postman e Newman.
+
+Objetivo
+Este projeto tem como objetivo demonstrar uma estratégia de automação de testes de API, contemplando:
+- Criação de usuário;
+- Geração de token;
+- Validação de autorização;
+- Consulta de livros;
+- Empréstimo de livros;
+- Consulta dos dados do usuário;
+- Validações funcionais das respostas;
+- Utilização de dados dinâmicos;
+- Execução automatizada via Newman;
+- Integração com CI/CD através do GitHub Actions.
+
+Tecnologias:
+- Postman;
+- Newman
+- JavaScript
+- Node.js
+- Git
+- GitHub Actions
+
+Fluxo automatizado
+A suíte executa o seguinte fluxo:
+- Create User;
+- Generate Token;
+- Authorized;
+- List Books;
+- Borrow Books;
+- Get User.
+Os dados necessários para as etapas seguintes são obtidos dinamicamente durante a execução.
+
+Testes automatizados
+A suíte contém validações relacionadas a:
+- HTTP status codes;
+- Estrutura das respostas;
+- Dados retornados pela API;
+- Criação e utilização de identificadores dinâmicos;
+- Autorização do usuário;
+- Informações dos livros;
+- Dados do usuário;
+- Resultado das operações realizadas.
+
+Execução via Postman
+Importe no Postman:
+- A Collection localizada no diretório postman/;
+- O Environment localizado no diretório postman/.
+
+Selecione o Environment e execute a Collection Runner.
+
+Execução via Newman
+Pré-requisitos
+1. Instale o Node.js e o npm.
+2. Depois, na raiz do projeto:
+        npm install
+
+Execute os testes:
+1. Acesse o diretório API, no terminal execute:
+      cd ~/workspace/quality-engineering-automation/api
+2. Execute
+      npm run test:api
+
+- A execução deve apresentar o resultado dos testes no terminal.
+
+Execute os testes com Relatório HTML
+Os testes também podem ser executados utilizando o reporter HTML, configurado no projeto.
+
+Execute os testes:
+1. Acesse o diretório postnan, no terminal execute:
+      cd ~/workspace/quality-engineering-automation/api/postman
+2. Execute:
+      newman run bookstore-api.postman_collection.json -e demoqa.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export reports/api-report.html
+
+- O relatório HTML será gerado no diretório reports, para acessar via terminal click com o botão direito do mouse e selecione a opção "Open in integrad Browser".
+
+CI/CD
+A suíte de API está preparada para execução automatizada através do GitHub Actions.
+A cada execução configurada no workflow, o Newman executa a Collection e o resultado dos testes determina o status da execução.
+
+Estratégia de automação
+A automação foi estruturada buscando:
+- Reutilização de dados;
+- Redução de dependência de valores fixos;
+- Execução independente de intervenção manual;
+- Validações próximas ao comportamento esperado da API;
+- Possibilidade de execução local e em pipeline;
+- Facilidade de manutenção.
+
+API utilizada
+A documentação da API utilizada no exercício está disponível através do Swagger:
+https://demoqa.com/swagger/
+
+Resultado atual
+A suíte possui:
+- 6 requisições automatizadas;
+- 17 testes automatizados;
+- Execução via Postman;
+- Execução via Newman;
+- Geração de relatório HTML;
+- Execução em CI/CD GITHUB ACTION.
