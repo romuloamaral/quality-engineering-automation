@@ -1,0 +1,271 @@
+{
+  "info": {
+    "_postman_id": "2eff440c-bb12-4862-ac8a-0f9a00637a53",
+    "name": "Bookstore API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "4095437"
+  },
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Create User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code should be 201\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\npm.test(\"Response should contain userID\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"userID\");\r\n});\r\n\r\npm.test(\"Username should be returned correctly\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.username).to.eql(\r\n        pm.environment.get(\"username\")\r\n    );\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\npm.environment.set(\"userId\", response.userID);"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const timestamp = Date.now();\r\n\r\nconst username = `qa_user_${timestamp}`;\r\nconst password = \"Qa@123456\";\r\n\r\npm.environment.set(\"username\", username);\r\npm.environment.set(\"password\", password);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Account/v1/User",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Account",
+                "v1",
+                "User"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code should be 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response should contain token\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"token\");\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\npm.environment.set(\"token\", response.token);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Account/v1/GenerateToken",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Account",
+                "v1",
+                "GenerateToken"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Authorized",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code should be 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"User should be authorized\", function () {\r\n    pm.expect(pm.response.text()).to.eql(\"true\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"{{username}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Account/v1/Authorized",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Account",
+                "v1",
+                "Authorized"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "BookStore",
+      "item": [
+        {
+          "name": "List Books",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code should be 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response should contain books\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"books\");\r\n    pm.expect(response.books).to.be.an(\"array\");\r\n});\r\n\r\npm.test(\"There should be at least two books\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.books.length).to.be.at.least(2);\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\npm.environment.set(\"isbn1\", response.books[0].isbn);\r\npm.environment.set(\"isbn2\", response.books[1].isbn);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/BookStore/v1/Books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "BookStore",
+                "v1",
+                "Books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Borrow Books",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code should be 201\", function () { pm.response.to.have.status(201); });\r\n\r\npm.test(\"Response should contain books\", function () { const response = pm.response.json();\r\n\r\npm.expect(response).to.have.property(\"books\"); pm.expect(response.books).to.be.an(\"array\"); });\r\n\r\npm.test(\"Two books should be borrowed\", function () { const response = pm.response.json();\r\n\r\npm.expect(response.books).to.have.lengthOf(2); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \r\n    \"userId\": \"{{userId}}\", \r\n    \"collectionOfIsbns\": [ \r\n        { \r\n            \"isbn\": \"{{isbn1}}\" \r\n        }, \r\n        { \r\n            \"isbn\": \"{{isbn2}}\" \r\n        } \r\n    ] \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/BookStore/v1/Books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "BookStore",
+                "v1",
+                "Books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code should be 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response should contain user information\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response).to.have.property(\"userId\");\r\n    pm.expect(response).to.have.property(\"username\");\r\n    pm.expect(response).to.have.property(\"books\");\r\n});\r\n\r\npm.test(\"User ID should match the created user\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.userId).to.eql(\r\n        pm.environment.get(\"userId\")\r\n    );\r\n});\r\n\r\npm.test(\"User should have two borrowed books\", function () {\r\n    const response = pm.response.json();\r\n\r\n    pm.expect(response.books).to.have.lengthOf(2);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Account/v1/User/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Account",
+                "v1",
+                "User",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
