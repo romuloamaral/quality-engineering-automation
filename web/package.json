@@ -1,0 +1,16 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:web": "cypress run",
+    "test:web:headed": "cypress run --headed",
+    "test:web:open": "cypress open"
+  },
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "2.2.8",
+    "@badeball/cypress-cucumber-preprocessor": "^28.0.0",
+    "cypress": "^16.1.1"
+  }
+}
