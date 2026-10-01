@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - develop
-      - feature/Web
+      - feature/web
 
   pull_request:
     branches:
