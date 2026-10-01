@@ -1,0 +1,58 @@
+# Web Test Automation
+Automação de testes WEB utilizando Cypress, JavaScript, BDD e Page Object Model.
+
+## Objetivo
+Este projeto implementa a automação dos testes WEB utilizando o site DemoQA, seguindo uma estrutura preparada para a expansão dos cenários.
+
+## Tecnologias
+- JavaScript;
+- Node.js;
+- Cypress;
+- Cucumber / BDD;
+- Page Object Model (POM);
+- GitHub Actions.
+
+## Organização
+- Features;
+- Step Definitions
+- Page Objects;
+- Configuração do Cypress.
+
+## Execução local
+- Instalar as dependências:
+    npm ci
+
+- Executar os testes em modo headless:
+    npm run test:web
+
+- Executar os testes com o navegador visível:
+    npm run test:web:headed
+
+- Abrir o Cypress:
+    npm run test:web:open
+
+## CI/CD
+Os testes WEB são executados automaticamente através do GitHub Actions.
+
+- Workflow: Git push > GitHub Actions > Node.js NPM ci > Cypress > Testes WEB
+
+## Cenários implementados
+- Atualmente, o projeto contém a automação do fluxo Pratice Form.
+- A estrutura foi preparada para a inclusão dos demais cenários do escopo WEB.
+
+## Evolução planejada
+Novos cenários podem ser adicionados seguindo a mesma arquitetura:
+- Browser Windows;
+- Web Tables;
+- Progress Bar;
+- Sortable.
+
+## Resultado
+A automação foi estruturada visando:
+- Reutilização de código;
+- Facilidade de manutenção;
+- Separação de responsabilidades;
+- Execução local;
+- Execução automatizada em CI/CD.
+
+

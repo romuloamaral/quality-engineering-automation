@@ -1,7 +1,7 @@
-API Test Automation
+# API Test Automation
 Automação de testes da API Bookstore utilizando Postman e Newman.
 
-Objetivo
+## Objetivo
 Este projeto tem como objetivo demonstrar uma estratégia de automação de testes de API, contemplando:
 - Criação de usuário;
 - Geração de token;
@@ -14,7 +14,7 @@ Este projeto tem como objetivo demonstrar uma estratégia de automação de test
 - Execução automatizada via Newman;
 - Integração com CI/CD através do GitHub Actions.
 
-Tecnologias:
+## Tecnologias:
 - Postman;
 - Newman
 - JavaScript
@@ -22,7 +22,7 @@ Tecnologias:
 - Git
 - GitHub Actions
 
-Fluxo automatizado
+## Fluxo automatizado
 A suíte executa o seguinte fluxo:
 - Create User;
 - Generate Token;
@@ -32,7 +32,7 @@ A suíte executa o seguinte fluxo:
 - Get User.
 Os dados necessários para as etapas seguintes são obtidos dinamicamente durante a execução.
 
-Testes automatizados
+## Testes automatizados
 A suíte contém validações relacionadas a:
 - HTTP status codes;
 - Estrutura das respostas;
@@ -43,14 +43,14 @@ A suíte contém validações relacionadas a:
 - Dados do usuário;
 - Resultado das operações realizadas.
 
-Execução via Postman
+## Execução via Postman
 Importe no Postman:
 - A Collection localizada no diretório postman/;
 - O Environment localizado no diretório postman/.
 
 Selecione o Environment e execute a Collection Runner.
 
-Execução via Newman
+## Execução via Newman
 Pré-requisitos
 1. Instale o Node.js e o npm.
 2. Depois, na raiz do projeto:
@@ -64,7 +64,7 @@ Execute os testes:
 
 - A execução deve apresentar o resultado dos testes no terminal.
 
-Execute os testes com Relatório HTML
+## Execute os testes com Relatório HTML
 Os testes também podem ser executados utilizando o reporter HTML, configurado no projeto.
 
 Execute os testes:
@@ -75,7 +75,7 @@ Execute os testes:
 
 - O relatório HTML será gerado no diretório reports, para acessar via terminal click com o botão direito do mouse e selecione a opção "Open in integrad Browser".
 
-CI/CD
+## CI/CD
 A suíte de API está preparada para execução automatizada através do GitHub Actions.
 A cada execução configurada no workflow, o Newman executa a Collection e o resultado dos testes determina o status da execução.
 
@@ -88,11 +88,11 @@ A automação foi estruturada buscando:
 - Possibilidade de execução local e em pipeline;
 - Facilidade de manutenção.
 
-API utilizada
+## API utilizada
 A documentação da API utilizada no exercício está disponível através do Swagger:
 https://demoqa.com/swagger/
 
-Resultado atual
+## Resultado atual
 A suíte possui:
 - 6 requisições automatizadas;
 - 17 testes automatizados;
