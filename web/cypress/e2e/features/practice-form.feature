@@ -6,3 +6,4 @@ Feature: Practice Form
         When eu prencho o formulário com dados válidos
         And eu envio o formulário
         Then o envio deve ser exibido com sucesso
+        And eu fecho o popup
