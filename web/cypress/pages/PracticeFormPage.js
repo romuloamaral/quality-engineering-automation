@@ -28,16 +28,21 @@ class PraticeFormPage {
         cy.get('#submit').click();
     }
 
-    fillDateOfBirth(date){
-        cy.get('#dateOfBirth-wrapper').click();
-        cy.get('#dateOfBirth-wrapper').clear();
-        cy.get('#dateOfBirth-wrapper').clear().type(date);
-        cy.get('#dateOfBirth-wrapper').type('{enter}');
+    fillDateOfBirth() {
+        cy.get('#dateOfBirthInput').click();
+
+        cy.get('.react-datepicker__month-select').select('July');
+        cy.get('.react-datepicker__year-select').select('1990');
+
+        cy.get('.react-datepicker__day:not(.react-datepicker__day--outside-month)')
+        .contains('4')
+        .click();
     }
 
     fillSubjects(subject){
-        cy.get('#subjectInput').type(subject);
-        cy.get('#subjectInput').type('{enter}');
+        cy.get('.subjects-auto-complete__input').click();
+        cy.get('.subjects-auto-complete__input').type(subject);
+        cy.get('.subjects-auto-complete__option, [id*="react-select"]').contains(subject).click();
     }
 
     selectHobby(){
@@ -62,8 +67,26 @@ class PraticeFormPage {
         cy.get('#react-select-4-option-0').click();
     }
 
+    get modalVisible(){
+        return cy.get('#example-modal-sizes-title-lg');
+    }
+
+    modalBeVisible(){
+        this.modalVisible.should('be.visible');
+    }
+
+    get modalContent(){
+        return cy.get('.modal-content');
+    }
+
+    get body(){
+        return cy.get('body');
+    }
+
     closeModal(){
-        cy.get('#closeLargeModal').click();
+        this.modalContent.should('be.visible');
+        this.body.type('{esc}');
+        this.modalContent.should('not.exist');
     }
 
 }

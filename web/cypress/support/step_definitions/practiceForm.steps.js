@@ -11,7 +11,7 @@ When('eu prencho o formulário com dados válidos', () => {
     PracticeFormPage.fillEmail('romulo.as@hotmail.com');
     PracticeFormPage.selectGender();
     PracticeFormPage.fillMobile('81999999999');
-    PracticeFormPage.fillDateOfBirth('04 Jul 1994');
+    PracticeFormPage.fillDateOfBirth(); 
     PracticeFormPage.fillSubjects('Maths');
     PracticeFormPage.selectHobby();
     PracticeFormPage.uploadFile();
@@ -25,10 +25,9 @@ When('eu envio o formulário', () => {
 });
 
 Then('o envio deve ser exibido com sucesso', () => {
-    cy.get('#example-modal-sizes-title-lg').should('be.visible');
+    PracticeFormPage.modalBeVisible();
 });
 
 When('eu fecho o popup', () => {
     PracticeFormPage.closeModal();
-    cy.get('#exemple-model-size-title-lg').should('not.exist');
-})
+});
